@@ -1,0 +1,70 @@
+@font-face {
+    font-family: pressStart;
+    src: url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+};
+
+* {
+    font-family: pressStart;
+    background-color: #057389;
+};
+
+body {
+    padding-top: auto;
+
+}
+
+#search-box {
+    text-align: center;
+    background-color: #e3e9e5;
+    border-radius: 8px;
+    margin: auto;
+    margin-top: 40px;
+    padding: 30px;
+    padding-left: 65px;
+    width: 50rem;
+}
+
+#pokemon-select {
+    text-align: center;
+}
+
+.fixed-header, .fixed-footer {
+    width: 100%;
+    position: fixed;
+    background: #f7d51d;
+    padding-left: 20px;
+
+}
+
+.fixed-header a {
+    color: white;
+}
+
+
+.fixed-header .button {
+    background-color: #f7d51d;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    border-right: 2px solid #e59400;
+}
+.fixed-header .button:hover{
+    background-color: #e59400;
+}
+
+.fixed-header{
+    top: 0;
+    border-bottom: 3px solid #e59400;
+
+}
+
+.fixed-footer{
+    text-align: center;
+    padding-top: 20px;
+    bottom: 0;
+    padding-bottom: 15px;
+}
+
+.fixed-footer .separator{
+    height: 10px;
+}

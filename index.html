@@ -5,14 +5,137 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Pokedex</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='style.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+
     <script src='main.js'></script>
 </head>
 <body>
-    
+
+    <div class="fixed-header">
+        <img src="https://i.imgur.com/ZlFgmTO.png"/>
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <a href="#" style="text-decoration:none" class="button">Home</a>
+            <a href="#" style="text-decoration:none" class="button">About</a>
+            <a href="#" style="text-decoration:none" class="button">Pokedex</a>
+            <a href="#" style="text-decoration:none" class="button">Berrydex</a>
+            <a href="https://pokeapi.co/" style="text-decoration:none" class="button">Credits</a>
+          </div>
+    </div>>
+
+
+    <div class="alert alert-dark" id="search-box">
+        <div class="row">
+            <div class="nes-select col-md-8">
+                <select required id="pokemon-select">
+                <option value="" disabled selected hidden>Select a pokemon</option>
+                <option value="0">To be</option>
+                <option value="1">Not to be</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+            <button type="button" class="nes-btn is-warning">Search</button>
+            </div>
+        </div>
+    </div>
+<br><br>
+
+      <section class="container nes-container" id="main-container">
+        <div class="row">
+            <p class="title">Pokemon name</p>
+        </div>
+        <div class="row">
+                <div class="col-md-4">  
+                    <div class="nes-container is-rounded">
+                <!-- here goes the img of the pokemon -->
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="nes-container with-title">
+                        <p class="title">Container</p>
+                            <!-- here goes the pokedex entry or encounters -->
+                    </div>
+                </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="nes-container with-title is-centered">
+                    <p class="title">Basics</p>
+                        <!-- here goes the basic data, type, weight, height, abilities -->
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="nes-container with-title">
+                    <p class="title">Moves?</p>
+                        <!-- here goes the basic data, type, weight, height, abilities -->
+                </div>
+            </div>
+        </div>
+
+          </section>
+ 
+<div class="fixed-footer">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="container">Copyright &copy; 2020 Duck</div>  
+        </div>
+        <div class="col-md-3">
+            <strong>CATEGORIES</strong>
+        </div>
+        <div class="col-md-3">
+            <strong>SITE INFO</strong>
+        </div>
+    </div>
+    <div class="separator">
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-5"> 
+        </div>
+        <div class="col-md-3">
+            <a href="#" style="text-decoration:none">Pokedex</a>
+        </div>
+        <div class="col-md-3">
+            <a href="#" style="text-decoration:none">PokeApi</a>
+        </div>
+    </div>
+    <div class="separator">
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-5"> 
+        </div>
+        <div class="col-md-3">
+            <a href="#" style="text-decoration:none">Berrydex</a>
+        </div>
+        <div class="col-md-3">
+            <a href="#" style="text-decoration:none">P-M-tries</a>
+        </div>
+    </div>
+    <div class="separator">
+
+    </div>
+    <div class="row">
+        <div class="col-md-5"> 
+        </div>
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-3">
+            <i class="nes-icon facebook is-small"></i>
+            <i class="nes-icon twitter is-small"></i>
+            <i class="nes-icon youtube is-small"></i>
+        </div>
+    </div>
+  
+
+</div>
+
 </body>
 </html>
 
