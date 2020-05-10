@@ -1,16 +1,10 @@
-@font-face {
-    font-family: pressStart;
-    src: url(https://fonts.googleapis.com/css?family=Press+Start+2P);
-};
-
-* {
-    font-family: pressStart;
-    background-color: #057389;
-};
-
 body {
     padding-top: auto;
 
+}
+
+#pokemon-select option {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #search-box {
@@ -30,10 +24,8 @@ body {
 
 .fixed-header, .fixed-footer {
     width: 100%;
-    position: fixed;
     background: #f7d51d;
     padding-left: 20px;
-
 }
 
 .fixed-header a {
@@ -61,10 +53,80 @@ body {
 .fixed-footer{
     text-align: center;
     padding-top: 20px;
-    bottom: 0;
+    bottom: 0px;
     padding-bottom: 15px;
+    margin-top: 40px;
+}
+
+.fixed {
+    position: fixed;
 }
 
 .fixed-footer .separator{
     height: 10px;
 }
+
+#sprite-container {
+    text-align: center;
+}
+
+#ability-container {
+    text-align: center;
+}
+
+#mon-basics {
+    text-align: center;
+}
+
+#stats-container {
+    text-align: center;  
+    padding: 20px; 
+}
+
+
+section .btn{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+section .btn-group{
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+section .table {
+    padding: 0;
+    width: 30%;
+    display: inline-block;
+    border: 1px solid #343a40;
+    border-radius: 2px;
+    vertical-align: top;
+    margin: 10px;
+}
+
+.table thead tr{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-collapse: collapse;
+}
+
+.table tbody tr {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-collapse: collapse;
+}
+
+section .th {
+    height: 70px;
+    width: 30%;
+    text-align: center;
+    vertical-align: middle;
+    padding: auto;
+}
+
+.not-display {
+    display: none;
+}
+
