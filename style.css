@@ -1,5 +1,6 @@
 body {
     padding-top: auto;
+    background-image: url('https://images7.alphacoders.com/662/662102.png');
 
 }
 
@@ -12,14 +13,22 @@ body {
     background-color: #e3e9e5;
     border-radius: 8px;
     margin: auto;
-    margin-top: 40px;
+    margin-top: 5px;
     padding: 30px;
-    padding-left: 65px;
-    width: 50rem;
+    width: 50%;
+    height: 840px;
 }
 
-#pokemon-select {
-    text-align: center;
+#divider-box {
+    height: 30px;
+    margin: 20px;
+    align-items: center;
+}
+
+#divider-box hr{
+    border: 1px solid rgba(0, 0, 0, 0.664);
+    margin-top: 6%;
+    margin-bottom: 6%;
 }
 
 .fixed-header, .fixed-footer {
@@ -59,7 +68,8 @@ body {
 }
 
 .fixed {
-    position: fixed;
+    position: relative;
+    bottom: 0;
 }
 
 .fixed-footer .separator{
@@ -128,5 +138,9 @@ section .th {
 
 .not-display {
     display: none;
+}
+
+.disabled {
+    pointer-events: none
 }
 
