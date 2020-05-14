@@ -296,7 +296,7 @@ function clearPokemonId (){
     statsContainer.innerHTML = '';
     const titleStats = document.createElement('p');
     titleStats.classList.add('title');
-    titleStats.innerText = 'Abilities';
+    titleStats.innerText = 'Stats';
     statsContainer.appendChild(titleStats);
 };
 
