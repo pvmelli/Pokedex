@@ -1,4 +1,4 @@
-function makeIdVisible() {
+/* function makeIdVisible() {
 const mainContainer = document.querySelector('#main-container');
 mainContainer.classList.remove('not-display');
 
@@ -298,6 +298,223 @@ function clearPokemonId (){
     titleStats.classList.add('title');
     titleStats.innerText = 'Stats';
     statsContainer.appendChild(titleStats);
+};
+*/
+
+function createPagination() { //works
+    const totalNumberOfPokemons = 807;
+    const limit = 10;
+    const totalPages = (totalNumberOfPokemons / limit) + 1;
+
+    createPaginationItem('previous');
+    createPaginationItem('dotsprev');
+
+    for(let i = 1; totalPages > i; i++){
+        createPaginationItem(i);
+    };
+
+    createPaginationItem('dotsnext');
+    createPaginationItem('next');
+};
+
+function createPaginationItem(value) { //works
+    const $pageItem = document.createElement('li');
+    $pageItem.classList.add('page-item');
+    $pageItem.setAttribute('id', `page-${value}`);
+
+    if(typeof (value) === 'number') {
+        $pageItem.classList.add('not-display');
+    };
+
+    if(value === 'dotsprev' || value === 'dotsnext') {
+        $pageItem.classList.add('not-display');
+        $pageItem.classList.add('dot-items');
+        $pageItem.classList.add('disabled');
+        value = '...';
+    };
+
+    const $pageLink = document.createElement('a');
+    $pageLink.classList.add('page-link');
+    //$pageLink.setAttribute('data-url', URL);
+    $pageLink.setAttribute('id', `pagelink-${value}`);
+    $pageLink.innerText = value;
+
+    $pageItem.appendChild($pageLink);
+
+    const $pagination = document.querySelector('#pagination');
+    $pagination.appendChild($pageItem);
+};
+
+function ifPageSelected(selectedPage) {
+    const offset = calculateOffset(selectedPage);
+    loadingList();
+    updatePagination(selectedPage)
+    getPokemonPage(offset, 10).then(data => {
+        let pokemonPageJson = data;
+        updatePagination(selectedPage, pokemonPageJson);
+        setTimeout(() => {createPokemonPage(pokemonPageJson)}, 200);
+    });
+    showPaginationItems(selectedPage);
+    hidePaginationItems(selectedPage);
+};
+
+function showPaginationItems(selectedPage) { //works
+    const followingPages = selectedPage + 3;
+    const previousPages = selectedPage - 3;
+    const $pageItems = document.querySelectorAll('.page-item');
+    const totalPages = Number($pageItems.length) - 2;
+
+    const dotPageItems = document.querySelectorAll('.dot-items');
+
+    if (previousPages >= 1) {
+        dotPageItems[0].classList.remove('not-display');
+    };
+
+    if (followingPages <= totalPages) {
+        dotPageItems[1].classList.remove('not-display');
+    }
+
+    for(let i = selectedPage; i < followingPages; i++) {
+        const pageItem = document.querySelector(`#page-${i}`);
+        if (pageItem === null) { break; }
+        pageItem.classList.remove('not-display');
+    }
+
+    for(let i = selectedPage; i > previousPages; i--) {
+        const pageItem = document.querySelector(`#page-${i}`);
+        if (pageItem === null) { break; }
+        pageItem.classList.remove('not-display');
+    }
+};
+
+function hidePaginationItems(selectedPage) { // works
+    const followingPages = selectedPage + 3;
+    const previousPages = selectedPage - 3;
+    const $pageItems = document.querySelectorAll('.page-item');
+    const totalPages = Number($pageItems.length) - 2;
+
+    const dotPageItems = document.querySelectorAll('.dot-items');
+
+    if (previousPages <= 0) {
+        dotPageItems[0].classList.add('not-display');
+    };
+
+    if (followingPages >= totalPages - 1) {
+        dotPageItems[1].classList.add('not-display');
+    };
+
+
+    if(!(previousPages < 1) && !(followingPages > totalPages)){
+        for(let i = previousPages; i < Number(selectedPage); i--){
+            if (i === 0) { break; }
+            const pageItem = document.querySelector(`#page-${i}`);
+            pageItem.classList.add('not-display');
+        };
+
+        for(let i = followingPages; i < $pageItems.length; i++){
+            if (i === totalPages + 1) { break; }
+            const pageItem = document.querySelector(`#page-${i}`);
+            if (pageItem === null) { break; }
+            pageItem.classList.add('not-display');
+        };
+
+    }else if (!(previousPages < 1)) {
+        for(let i = previousPages; i < selectedPage; i--){
+            if (i === 0) { break; }
+            const pageItem = document.querySelector(`#page-${i}`);
+            if (pageItem === null) { break; }
+            pageItem.classList.add('not-display');
+        };
+    } else if (!(followingPages > totalPages)) {
+        for(let i = followingPages; i < $pageItems.length; i++){
+            if (i === totalPages + 1) { break; }
+            const pageItem = document.querySelector(`#page-${i}`);
+            if (pageItem === null) { break; }
+            pageItem.classList.add('not-display');
+        };
+    };
+};
+
+function calculateOffset(selectedPage) {
+    const limit = 10;
+    const offset = (selectedPage - 1) * limit;
+    
+    return offset;
+};
+
+function updatePagination(selectedPage, pokemonPageJson) {
+    if (pokemonPageJson === undefined) {
+        updateActivePage(selectedPage);
+    } else {
+        updateDisabledButtons(pokemonPageJson);
+    }
+};
+
+function updateActivePage(selectedPage){
+    const $allItems = document.querySelectorAll('.page-item');
+    $allItems.forEach(element => {
+        element.classList.remove('active');
+    })
+
+    const $selectedItem = document.querySelector(`#page-${selectedPage}`);
+    $selectedItem.classList.add('active');
+};
+
+function updateDisabledButtons(pokemonPageJson) {
+    const $previousButton = document.querySelector('#page-previous')
+    
+    if(pokemonPageJson.previous === null) {
+        $previousButton.classList.add('disabled');
+    } else {
+        $previousButton.classList.remove('disabled');
+    }
+
+    const $nextButton = document.querySelector('#page-next')
+
+    if(pokemonPageJson.next === null) {
+        $nextButton.classList.add('disabled');
+    } else {
+        $nextButton.classList.remove('disabled');
+    };
+}
+
+function loadingList() {
+    $listGroup = document.querySelector('#pokemon-list');
+    $listGroup.innerHTML = 'Loading...';
+}
+
+function createPokemonPage (pageJson) { //https://pokeapi.co/api/v2/pokemon-species/ json
+
+    $listGroup = document.querySelector('#pokemon-list');
+    $listGroup.innerHTML = '';
+
+    pageJson.results.forEach(element => {
+        const $listItem = document.createElement('li');
+        $listItem.classList.add('list-group-item');
+        $listItem.innerText = element.name;
+        
+        $listGroup.appendChild($listItem);
+    });
+/* <ul class="list-group">
+  <li class="list-group-item active">Cras justo odio</li>
+  <li class="list-group-item">Dapibus ac facilisis in</li>
+  <li class="list-group-item">Morbi leo risus</li>
+  <li class="list-group-item">Porta ac consectetur ac</li>
+  <li class="list-group-item">Vestibulum at eros</li>
+</ul> */
+
+};
+
+
+
+async function getPokemonPage(offset, limit) {
+    // you get ONE PAGE, the one displayed
+
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon-species/?offset=${offset}&limit=${limit}`);
+    let data = await response.json();
+
+    return data;
+
 };
 
 
