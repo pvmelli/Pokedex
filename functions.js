@@ -6,13 +6,6 @@ const footer = document.querySelector('#footer');
 footer.classList.remove('fixed');
 };
 
-
-function fetchInput () {
-    const selectedPokemon = document.querySelector('#pokemon-select').value;
-
-    return selectedPokemon;
-};
-
 function fetchPokemonData(id) {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
     .then((response) => {
@@ -301,6 +294,68 @@ function clearPokemonId (){
 };
 */
 
+function fetchInput() {
+    const rawInput = document.querySelector('#pokemon-field').value.trim();
+
+    const inputValidationResult = validateInput(rawInput);
+
+    if (inputValidationResult === 'success'){
+        return rawInput;
+    } else {
+        showInputError(inputValidationResult)
+        return 'error';
+    };
+};
+
+function validateInput(inputName) {
+     
+    if(inputName.length === 0){
+        return 'This field cannot be empty';
+    };
+
+    const onlyNumbersRegex = /^[0-9]*$/;
+    if(onlyNumbersRegex.test(inputName)){
+        return 'This field cannot contain numbers';
+    };
+
+    return 'success';
+
+};
+
+async function fetchPokemonDataWithName(pokemonName) {
+    // try to search it in local storage, catch -->a la api con try
+    try {
+        const responseSingle = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+        const responseSpecies = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonName}`);
+        let data = [await responseSingle.json(), await responseSpecies.json()];
+        clearInputError();
+        
+        return data;
+
+    }catch (error){
+        showInputError('The name entered is invalid');
+        return null;
+    }
+};
+
+function clearInputError () {
+    const $inputField = document.querySelector('#pokemon-field');
+    $inputField.classList.remove('is-error');
+
+    const $errorContainer = document.querySelector('#invalid-search');
+    $errorContainer.classList.add('not-display');
+
+};
+
+function showInputError(error){
+    const $inputField = document.querySelector('#pokemon-field');
+    $inputField.classList.add('is-error');
+
+    const $errorContainer = document.querySelector('#invalid-search');
+    $errorContainer.classList.remove('not-display');
+    $errorContainer.innerText = error;
+};
+
 function createPagination() { //works
     const totalNumberOfPokemons = 807;
     const limit = 10;
@@ -349,7 +404,7 @@ function ifPageSelected(selectedPage) {
     const offset = calculateOffset(selectedPage);
     loadingList();
     updatePagination(selectedPage)
-    getPokemonPage(offset, 10).then(data => {
+    getOnePokemonPage(offset, 10).then(data => {
         let pokemonPageJson = data;
         updatePagination(selectedPage, pokemonPageJson);
         setTimeout(() => {createPokemonPage(pokemonPageJson)}, 200);
@@ -491,6 +546,7 @@ function createPokemonPage (pageJson) { //https://pokeapi.co/api/v2/pokemon-spec
     pageJson.results.forEach(element => {
         const $listItem = document.createElement('li');
         $listItem.classList.add('list-group-item');
+        $listItem.setAttribute('id', element.name);
         $listItem.innerText = element.name;
         
         $listGroup.appendChild($listItem);
@@ -507,9 +563,7 @@ function createPokemonPage (pageJson) { //https://pokeapi.co/api/v2/pokemon-spec
 
 
 
-async function getPokemonPage(offset, limit) {
-    // you get ONE PAGE, the one displayed
-
+async function getOnePokemonPage(offset, limit) {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon-species/?offset=${offset}&limit=${limit}`);
     let data = await response.json();
 

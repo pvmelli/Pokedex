@@ -4,8 +4,33 @@ body {
 
 }
 
-#pokemon-select option {
-    font-family: Arial, Helvetica, sans-serif;
+.fixed-header, .fixed-footer {
+    width: 100%;
+    background: #f7d51d;
+    padding-left: 20px;
+}
+
+.fixed-header a {
+    color: white;
+}
+
+
+.fixed-header .button {
+    background-color: #f7d51d;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    border-right: 2px solid #e59400;
+}
+
+.fixed-header .button:hover{
+    background-color: #e59400;
+}
+
+.fixed-header{
+    top: 0;
+    border-bottom: 3px solid #e59400;
+
 }
 
 #search-box {
@@ -31,77 +56,22 @@ body {
     margin-bottom: 6%;
 }
 
-.fixed-header, .fixed-footer {
-    width: 100%;
-    background: #f7d51d;
-    padding-left: 20px;
+.sprite {
+    width: 150px;
+    height: 150px;
 }
 
-.fixed-header a {
-    color: white;
+#pokedex-entry {
+    background-color: white;
 }
 
-
-.fixed-header .button {
-    background-color: #f7d51d;
-    border: none;
-    color: white;
-    padding: 10px 10px;
-    border-right: 2px solid #e59400;
-}
-.fixed-header .button:hover{
-    background-color: #e59400;
-}
-
-.fixed-header{
-    top: 0;
-    border-bottom: 3px solid #e59400;
-
-}
-
-.fixed-footer{
+.pokedex-container {
     text-align: center;
-    padding-top: 20px;
-    bottom: 0px;
-    padding-bottom: 15px;
-    margin-top: 40px;
-}
-
-.fixed {
-    position: relative;
-    bottom: 0;
-}
-
-.fixed-footer .separator{
-    height: 10px;
-}
-
-#sprite-container {
-    text-align: center;
-}
-
-#ability-container {
-    text-align: center;
-}
-
-#mon-basics {
-    text-align: center;
-}
-
-#stats-container {
-    text-align: center;  
-    padding: 20px; 
-}
-
-
-section .btn{
-    margin-top: 5px;
-    margin-bottom: 5px;
 }
 
 section .btn-group{
-    padding-left: 1px;
-    padding-right: 1px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 section .table {
@@ -136,6 +106,23 @@ section .th {
     padding: auto;
 }
 
+.fixed-footer{
+    text-align: center;
+    padding-top: 20px;
+    bottom: 0px;
+    padding-bottom: 15px;
+    margin-top: 40px;
+}
+
+.fixed {
+    position: relative;
+    bottom: 0;
+}
+
+.fixed-footer .separator{
+    height: 10px;
+}
+
 .not-display {
     display: none;
 }
@@ -143,4 +130,13 @@ section .th {
 .disabled {
     pointer-events: none
 }
+
+.invalid {
+    text-align: left;
+    margin-top: 5px;
+    font-size: 10px;
+    color: #ce372b;
+}
+
+
 
