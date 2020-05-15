@@ -64,6 +64,7 @@ function managePokedexEntry(pokemondata){
     showPokedexEntry();
     clearPokedexEntry();
     fillPokedexEntry(pokemondata);
+    scrollToPokedexEntry();
 };
 
 function clearPokedexEntry() {
@@ -77,6 +78,11 @@ function clearPokedexEntry() {
 function showPokedexEntry(){
     const $pokedexEntry = document.querySelector('#pokedex-entry');
     $pokedexEntry.classList.remove('not-display');
+};
+
+function scrollToPokedexEntry() {
+    const pokedexEntryMargin = document.querySelector('#top-navbuttons-row');
+    pokedexEntryMargin.scrollIntoView();
 };
 
 function createGroupButton () {
@@ -560,14 +566,6 @@ function createPokemonPage (pageJson) { //https://pokeapi.co/api/v2/pokemon-spec
         
         $listGroup.appendChild($listItem);
     });
-/* <ul class="list-group">
-  <li class="list-group-item active">Cras justo odio</li>
-  <li class="list-group-item">Dapibus ac facilisis in</li>
-  <li class="list-group-item">Morbi leo risus</li>
-  <li class="list-group-item">Porta ac consectetur ac</li>
-  <li class="list-group-item">Vestibulum at eros</li>
-</ul> */
-
 };
 
 
@@ -578,6 +576,13 @@ async function getOnePokemonPage(offset, limit) {
 
     return data;
 
+};
+
+function makeNavButtonsVisible(){
+    const $navButtonContainers = document.querySelectorAll('.nav-container');
+    $navButtonContainers.forEach($container => {
+        $container.classList.remove('not-display')
+    });
 };
 
 

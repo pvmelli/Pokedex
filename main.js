@@ -2,13 +2,26 @@ window.onload = function () {
     createPagination();
     ifPageSelected(1);
 
+    assignInitialEventListeners();
+};
+
+function assignInitialEventListeners() {
     const $pagination = document.querySelector('[id="pagination"]');
     $pagination.addEventListener('click',managePageClick);
 
     const $searchButton = document.querySelector('[id="search-button"]');
     $searchButton.addEventListener('click',manageSearch);
-};
 
+    const $navSearchButton = document.querySelector('[id="nav-search-button"]');
+    const $searchTitle = document.querySelector('[id="search-title"]');
+    $navSearchButton.addEventListener('click', () => {$searchTitle.scrollIntoView()});
+
+    const $navListButton = document.querySelector('[id="nav-list-button"]');
+    $navListButton.addEventListener('click', () => {$pagination.scrollIntoView()});
+
+    const $navTopButton = document.querySelector('[id="nav-top-button"]');
+    $navTopButton.addEventListener('click', () => {document.documentElement.scrollTop = 0});
+};
 
 
 function managePageClick(event) {
@@ -34,6 +47,8 @@ function managePageClick(event) {
     ifPageSelected(numberOfClickedPage);
 }
 
+// function manageListClick()
+
 function manageSearch() {
     //show loading popup and then clear it;
     // go back to search bar and go back to top buttons
@@ -46,16 +61,10 @@ function manageSearch() {
         .then(data => {
             data ? managePokedexEntry(data) : false;
         });
+        makeNavButtonsVisible();
     };
 };
 
-/*function search () {
-    clearPokemonId();
-    let input = fetchInput();
 
-    makeIdVisible();
-
-    fetchPokemonData(input);
-};*/
 
 
