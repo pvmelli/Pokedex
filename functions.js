@@ -66,7 +66,7 @@ function managePokedexEntry(pokemondata){
     fillPokedexEntry(pokemondata);
     scrollToPokedexEntry();
 
-    clearLoadingPopup()
+    clearLoadingPopup();
 };
 
 function activateLoadingPopup() {
