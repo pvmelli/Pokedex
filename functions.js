@@ -65,7 +65,19 @@ function managePokedexEntry(pokemondata){
     clearPokedexEntry();
     fillPokedexEntry(pokemondata);
     scrollToPokedexEntry();
+
+    clearLoadingPopup()
 };
+
+function activateLoadingPopup() {
+    const $loadingModal = document.querySelector('#loading-modal');
+    $loadingModal.classList.remove('not-display');
+};
+
+function clearLoadingPopup() {
+    const $loadingModal = document.querySelector('#loading-modal');
+    $loadingModal.classList.add('not-display');
+}
 
 function clearPokedexEntry() {
     const $pokedexContainers = document.querySelectorAll('.pokedex-container');
