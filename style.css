@@ -33,6 +33,17 @@ body {
 
 }
 
+#top-navbuttons-row{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.nav-buttons{
+    font-size: 14px;
+    width: 180px;
+    margin: 0 auto;
+}
+
 #search-box {
     text-align: center;
     background-color: #e3e9e5;
@@ -123,6 +134,10 @@ section .th {
     text-align: center;
     vertical-align: middle;
     padding: auto;
+}
+
+#bottom-navbuttons-row{
+    margin-top: 30px;
 }
 
 .fixed-footer{
