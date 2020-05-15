@@ -37,6 +37,7 @@ async function fetchPokemonDataWithName(pokemonName) {
         return data;
 
     }catch (error){
+        clearLoadingPopup();
         showInputError('The name entered is invalid');
         return null;
     }

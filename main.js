@@ -71,7 +71,7 @@ function manageListClick(event) {
     activateLoadingPopup();
     fetchPokemonDataWithName(clickedPokemon)
     .then(data => {
-        data ? managePokedexEntry(data) : clearLoadingPopup();
+        data ? managePokedexEntry(data) : false;
     });
     makeNavButtonsVisible();
 };
