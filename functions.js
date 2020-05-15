@@ -146,9 +146,15 @@ function fillPokemonName(name){
 function fillPokemonSprite(spriteURL){
     const $spriteContainer = document.querySelector('#sprite-container');
 
-    const $image = document.createElement('img');
-    $image.setAttribute('src', spriteURL);
-    $image.classList.add('sprite');
+    let $image;
+    if (spriteURL === null){
+        $image = document.createElement('strong');
+        $image.innerText = '???';
+    } else {
+        $image = document.createElement('img');
+        $image.setAttribute('src', spriteURL);
+        $image.classList.add('sprite');
+    }
 
     $spriteContainer.appendChild($image);
 
@@ -159,7 +165,7 @@ function fillPokemonCharacteristics(pokemonSingleData, pokemonSpeciesData) {
     fillGeneration(pokemonSpeciesData.generation.name, $characteristicsContainer);
     fillHeight(pokemonSingleData.height.toString(), $characteristicsContainer);
     fillWeight(pokemonSingleData.weight.toString(), $characteristicsContainer);
-    fillHabitat(pokemonSpeciesData.habitat.name, $characteristicsContainer)
+    fillHabitat(pokemonSpeciesData.habitat, $characteristicsContainer)
     fillTypes(pokemonSingleData.types, $characteristicsContainer);
 };
 
@@ -222,12 +228,19 @@ function weightFormatter(weightString) {
         return formattedWeight = `${weightString.slice(0,1)}.${weightString.slice(1)}kg`;       
     } else if (weightString.length <= 3) {
         return formattedWeight = `${weightString.slice(0,2)}.${weightString.slice(2)}kg`;       
+    } else if (weightString.length > 3) {
+        return formattedWeight = `${weightString.slice(0,3)}.${weightString.slice(3)}kg`;       
     };
 };
 
 function fillHabitat(habitat, container){
 
-    const formattedHabitat = habitatFormatter(habitat);
+    let formattedHabitat = '';
+    if (habitat === null){
+        formattedHabitat = '???'
+    } else {
+        formattedHabitat = habitatFormatter(habitat.name);
+    }
 
     const habitatBox = createGroupButton();
     const habitatPrefix = createPrefixButton('HABITAT', 'btn-dark');
