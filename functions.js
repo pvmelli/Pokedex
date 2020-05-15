@@ -1,3 +1,5 @@
+//test
+
 function fetchInput() {
     const rawInput = document.querySelector('#pokemon-field').value.trim();
 
