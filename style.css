@@ -1,6 +1,6 @@
 body {
     padding-top: auto;
-    background-image: url('https://images7.alphacoders.com/662/662102.png');
+    background-image: url('https://i.imgur.com/7N6txiH.png');
 
 }
 
@@ -37,6 +37,7 @@ body {
     text-align: center;
     background-color: #e3e9e5;
     border-radius: 8px;
+    border: 1px solid rgb(30, 30, 31);
     margin: auto;
     margin-top: 5px;
     padding: 30px;
@@ -69,9 +70,27 @@ body {
     text-align: center;
 }
 
+#pokemon-name {
+    text-align: left;
+}
+
+.nes-container #flavor-text {
+    text-align: justify;
+    padding: 10px;
+}
+
+section {
+    margin: 40px;
+}
+
 section .btn-group{
     margin-top: 5px;
     margin-bottom: 5px;
+    width: 100%;
+}
+
+#characteristics .btn{
+    font-size: 12px;
 }
 
 section .table {
@@ -99,7 +118,7 @@ section .table {
 }
 
 section .th {
-    height: 70px;
+    height: 50px;
     width: 30%;
     text-align: center;
     vertical-align: middle;
