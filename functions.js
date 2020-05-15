@@ -573,6 +573,7 @@ function createPokemonPage (pageJson) { //https://pokeapi.co/api/v2/pokemon-spec
     pageJson.results.forEach(element => {
         const $listItem = document.createElement('li');
         $listItem.classList.add('list-group-item');
+        $listItem.classList.add('list-group-item-action');
         $listItem.setAttribute('id', element.name);
         $listItem.innerText = element.name;
         
