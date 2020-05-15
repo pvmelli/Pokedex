@@ -1,5 +1,5 @@
 function fetchInput() {
-    const rawInput = document.querySelector('#pokemon-field').value.trim();
+    const rawInput = document.querySelector('#pokemon-field').value.trim().toLowerCase();
 
     const inputValidationResult = validateInput(rawInput);
 
