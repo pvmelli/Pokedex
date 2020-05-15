@@ -61,7 +61,6 @@ function manageSearch() {
         .then(data => {
             data ? managePokedexEntry(data) : false;
         });
-        makeNavButtonsVisible();
     };
 };
 
@@ -73,7 +72,6 @@ function manageListClick(event) {
     .then(data => {
         data ? managePokedexEntry(data) : false;
     });
-    makeNavButtonsVisible();
 };
 
 

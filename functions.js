@@ -33,6 +33,7 @@ async function fetchPokemonDataWithName(pokemonName) {
         const responseSpecies = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonName}`);
         let data = [await responseSingle.json(), await responseSpecies.json()];
         clearInputError();
+        makeNavButtonsVisible();
         
         return data;
 
