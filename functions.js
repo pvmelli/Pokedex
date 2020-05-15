@@ -29,27 +29,22 @@ function validateInput(inputName) {
 async function fetchPokemonDataWithName(pokemonName) {
     try {
         let pokemonData = loadPokemonDataFromLocalStorage(pokemonName);
-        console.log(pokemonData);
         if (pokemonData === null){
-            console.log('im throwing an error')
             throw error;
         } else {
-            console.log('im returning data from LS')
+            clearInputError();
+            makeNavButtonsVisible();
             return pokemonData;
         }
     } catch (e) {
-        console.log('this is the catch');
         try {
             let data = await loadPokemonDataFromApi (pokemonName);
-            console.log(data);
             savePokemonDataToLocalStorage (pokemonName, data);
             clearInputError();
             makeNavButtonsVisible();
-            console.log('im returning data from API')
             return data;
     
         }catch (error){
-            console.log('the name is INVALIDIII!!')
             clearLoadingPopup();
             showInputError('The name entered is invalid');
             return null;

@@ -1,3 +1,9 @@
+export function initialize() {
+    console.log('revving up the engine...')
+    const pepe = 'pepe';
+};
+
+
 window.onload = function () {
     createPagination();
     ifPageSelected(1);
