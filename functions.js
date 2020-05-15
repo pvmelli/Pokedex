@@ -27,22 +27,56 @@ function validateInput(inputName) {
 };
 
 async function fetchPokemonDataWithName(pokemonName) {
-    // try to search it in local storage, catch -->a la api con try
     try {
-        const responseSingle = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
-        const responseSpecies = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonName}`);
-        let data = [await responseSingle.json(), await responseSpecies.json()];
-        clearInputError();
-        makeNavButtonsVisible();
-        
-        return data;
-
-    }catch (error){
-        clearLoadingPopup();
-        showInputError('The name entered is invalid');
-        return null;
+        let pokemonData = loadPokemonDataFromLocalStorage(pokemonName);
+        console.log(pokemonData);
+        if (pokemonData === null){
+            console.log('im throwing an error')
+            throw error;
+        } else {
+            console.log('im returning data from LS')
+            return pokemonData;
+        }
+    } catch (e) {
+        console.log('this is the catch');
+        try {
+            let data = await loadPokemonDataFromApi (pokemonName);
+            console.log(data);
+            savePokemonDataToLocalStorage (pokemonName, data);
+            clearInputError();
+            makeNavButtonsVisible();
+            console.log('im returning data from API')
+            return data;
+    
+        }catch (error){
+            console.log('the name is INVALIDIII!!')
+            clearLoadingPopup();
+            showInputError('The name entered is invalid');
+            return null;
+        }
     }
+
 };
+
+function loadPokemonDataFromLocalStorage(pokemonName){
+let pokemonData = JSON.parse(localStorage.getItem(pokemonName));
+
+return pokemonData;
+};
+
+// JSON.parse(localStorage.getItem('user'))
+
+async function loadPokemonDataFromApi (pokemonName) {
+    const responseSingle = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+    const responseSpecies = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonName}`);
+    let data = [await responseSingle.json(), await responseSpecies.json()];
+
+    return data;
+};
+
+function savePokemonDataToLocalStorage (pokemonName, pokemonData){
+    localStorage.setItem(pokemonName, JSON.stringify(pokemonData));
+} 
 
 function clearInputError () {
     const $inputField = document.querySelector('#pokemon-field');
@@ -286,21 +320,7 @@ function typeFormatter(typesObject) {
 
 
 
-function createPagination() { 
-    const totalNumberOfPokemons = 807;
-    const limit = 10;
-    const totalPages = (totalNumberOfPokemons / limit) + 1;
 
-    createPaginationItem('previous');
-    createPaginationItem('dotsprev');
-
-    for(let i = 1; totalPages > i; i++){
-        createPaginationItem(i);
-    };
-
-    createPaginationItem('dotsnext');
-    createPaginationItem('next');
-};
 
 function fillPokemonFlavorText(flavorTextEntriesObject){
     const englishFlavorText = getEnglishText(flavorTextEntriesObject);
@@ -414,6 +434,21 @@ function createTBRow(name, value){
     return row;
 };
 
+function createPagination() { 
+    const totalNumberOfPokemons = 807;
+    const limit = 10;
+    const totalPages = (totalNumberOfPokemons / limit) + 1;
+
+    createPaginationItem('previous');
+    createPaginationItem('dotsprev');
+
+    for(let i = 1; totalPages > i; i++){
+        createPaginationItem(i);
+    };
+
+    createPaginationItem('dotsnext');
+    createPaginationItem('next');
+};
 
 function createPaginationItem(value) {
     const $pageItem = document.createElement('li');
