@@ -51,12 +51,12 @@ function managePageClick(event) {
 
 function manageSearch() {
     //show loading popup and then clear it;
-    // go back to search bar and go back to top buttons
     const validatedInput = fetchInput();
 
     if (validatedInput === 'error'){
         return ''
     } else {
+        activateLoadingPopup();
         fetchPokemonDataWithName(validatedInput)
         .then(data => {
             data ? managePokedexEntry(data) : false;
