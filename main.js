@@ -2,8 +2,11 @@ window.onload = function () {
     createPagination();
     ifPageSelected(1);
 
-    let $pagination = document.querySelector('[id="pagination"]');
+    const $pagination = document.querySelector('[id="pagination"]');
     $pagination.addEventListener('click',managePageClick);
+
+    const $searchButton = document.querySelector('[id="search-button"]');
+    $searchButton.addEventListener('click',manageSearch);
 };
 
 
@@ -30,6 +33,21 @@ function managePageClick(event) {
 
     ifPageSelected(numberOfClickedPage);
 }
+
+function manageSearch() {
+    //show loading popup and then clear it;
+    // go back to search bar and go back to top buttons
+    const validatedInput = fetchInput();
+
+    if (validatedInput === 'error'){
+        return ''
+    } else {
+        fetchPokemonDataWithName(validatedInput)
+        .then(data => {
+            data ? managePokedexEntry(data) : false;
+        });
+    };
+};
 
 /*function search () {
     clearPokemonId();

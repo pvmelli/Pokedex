@@ -24,20 +24,68 @@
             <a href="#" style="text-decoration:none" class="button">Berrydex</a>
             <a href="https://pokeapi.co/" style="text-decoration:none" class="button">Credits</a>
           </div>
-    </div>>
+    </div>
 
+
+    <section class="container nes-container not-display" id="pokedex-entry">
+        <div class="row">
+            <div class="col-md-4">  
+                <h4 class="pokedex-container" id="pokemon-name">Pokemon name</h4>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-md-4">  
+                    <div class="nes-container is-rounded pokedex-container" id="sprite-container">
+                <!-- here goes the img of the pokemon -->
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="nes-container" id="flavor">
+                            <div class="pokedex-container" id="flavor-text"><!-- here goes the flavor text--></div>
+                    </div>
+                </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="nes-container with-title is-centered" id="mon-basics">
+                    <p class="title">Characteristics</p>
+                    <div class="pokedex-container" id="characteristics"><!-- here goes the basic data, type, weight, height, abilities --></div>
+                        
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="nes-container with-title" id="ability-container">
+                    <p class="title">Abilities</p>
+                    <div class="pokedex-container" id="abilities"><!-- here go the abilities--></div>                        
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-md">
+                <div class="nes-container with-title" id="stats-container">
+                    <p class="title">Stats</p>
+                        <div class="pokedex-container" id="stats"><!-- here go the stats --></div>
+                </div>
+            </div>
+        </div>
+
+    </section>
 
     <div id="search-box">
         <strong>Search for a particular pokemon</strong>
         <br><br>
         <div class="row justify-content-md-center">
             <div class="col-md-8">
-                <div class="nes-field">
-                    <input type="text" id="pokemon-field" class="nes-input">
-                  </div>
+                <input type="text" id="pokemon-field" class="nes-input">
+                <div class="invalid not-display" id="invalid-search">
+                    
+                </div>
+                
             </div>
             <div class="col-md-3">
-            <button type="button" onclick="search()" class="nes-btn is-warning" id="search-button">Search</button>
+            <button type="button" class="nes-btn is-warning" id="search-button">Search</button>
             </div>
         </div>
         <div class="row justify-content-md-center" id="divider-box">
@@ -67,43 +115,7 @@
     
 
     </div>
-    </div>
-<br><br>
-
-      <section class="container nes-container not-display" id="main-container">
-        <div class="row">
-            <p id="#mon-name">Pokemon name</p>
-        </div>
-        <div class="row">
-                <div class="col-md-4">  
-                    <div class="nes-container is-rounded" id="sprite-container">
-                <!-- here goes the img of the pokemon -->
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="nes-container with-title" id="ability-container">
-                        <p class="title">Abilities</p>
-                            <!-- here goes the abilities-->
-                    </div>
-                </div>
-        </div>
-        <br><br>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="nes-container with-title is-centered" id="mon-basics">
-                    <p class="title">Basics</p>
-                        <!-- here goes the basic data, type, weight, height, abilities -->
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="nes-container with-title" id="stats-container">
-                    <p class="title">Stats</p>
-                        <!-- here go the stats -->
-                </div>
-            </div>
-        </div>
-
-          </section>
+</div>
 
 <div class="fixed-footer fixed" id="footer">
     <div class="row">

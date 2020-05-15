@@ -1,34 +1,7 @@
 body {
     padding-top: auto;
-    background-image: url('https://images7.alphacoders.com/662/662102.png');
+    background-image: url('https://i.imgur.com/7N6txiH.png');
 
-}
-
-#pokemon-select option {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-#search-box {
-    text-align: center;
-    background-color: #e3e9e5;
-    border-radius: 8px;
-    margin: auto;
-    margin-top: 5px;
-    padding: 30px;
-    width: 50%;
-    height: 840px;
-}
-
-#divider-box {
-    height: 30px;
-    margin: 20px;
-    align-items: center;
-}
-
-#divider-box hr{
-    border: 1px solid rgba(0, 0, 0, 0.664);
-    margin-top: 6%;
-    margin-bottom: 6%;
 }
 
 .fixed-header, .fixed-footer {
@@ -49,6 +22,7 @@ body {
     padding: 10px 10px;
     border-right: 2px solid #e59400;
 }
+
 .fixed-header .button:hover{
     background-color: #e59400;
 }
@@ -59,49 +33,64 @@ body {
 
 }
 
-.fixed-footer{
+#search-box {
     text-align: center;
-    padding-top: 20px;
-    bottom: 0px;
-    padding-bottom: 15px;
-    margin-top: 40px;
-}
-
-.fixed {
-    position: relative;
-    bottom: 0;
-}
-
-.fixed-footer .separator{
-    height: 10px;
-}
-
-#sprite-container {
-    text-align: center;
-}
-
-#ability-container {
-    text-align: center;
-}
-
-#mon-basics {
-    text-align: center;
-}
-
-#stats-container {
-    text-align: center;  
-    padding: 20px; 
-}
-
-
-section .btn{
+    background-color: #e3e9e5;
+    border-radius: 8px;
+    border: 1px solid rgb(30, 30, 31);
+    margin: auto;
     margin-top: 5px;
-    margin-bottom: 5px;
+    padding: 30px;
+    width: 50%;
+    height: 840px;
+}
+
+#divider-box {
+    height: 30px;
+    margin: 20px;
+    align-items: center;
+}
+
+#divider-box hr{
+    border: 1px solid rgba(0, 0, 0, 0.664);
+    margin-top: 6%;
+    margin-bottom: 6%;
+}
+
+.sprite {
+    width: 150px;
+    height: 150px;
+}
+
+#pokedex-entry {
+    background-color: white;
+}
+
+.pokedex-container {
+    text-align: center;
+}
+
+#pokemon-name {
+    text-align: left;
+}
+
+.nes-container #flavor-text {
+    text-align: justify;
+    padding: 10px;
+}
+
+section {
+    margin: 40px;
 }
 
 section .btn-group{
-    padding-left: 1px;
-    padding-right: 1px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+#characteristics .btn{
+    font-size: 12px;
 }
 
 section .table {
@@ -129,11 +118,28 @@ section .table {
 }
 
 section .th {
-    height: 70px;
+    height: 50px;
     width: 30%;
     text-align: center;
     vertical-align: middle;
     padding: auto;
+}
+
+.fixed-footer{
+    text-align: center;
+    padding-top: 20px;
+    bottom: 0px;
+    padding-bottom: 15px;
+    margin-top: 40px;
+}
+
+.fixed {
+    position: relative;
+    bottom: 0;
+}
+
+.fixed-footer .separator{
+    height: 10px;
 }
 
 .not-display {
@@ -143,4 +149,13 @@ section .th {
 .disabled {
     pointer-events: none
 }
+
+.invalid {
+    text-align: left;
+    margin-top: 5px;
+    font-size: 10px;
+    color: #ce372b;
+}
+
+
 
