@@ -1,9 +1,23 @@
+import {activateLoadingPopup} from '../ui/general.js';
+import {fetchPokemonDataWithName} from '../services/pokemon.js';
+import {managePokedexEntry} from './entry.js';
+
 export function loadingList() {
     const $listGroup = document.querySelector('#pokemon-list');
     $listGroup.innerHTML = 'Loading...';
 }
 
-export function createPokemonPage (pageJson) {
+export function manageListClick(event) {
+    const clickedPokemon = event.target.id;
+
+    activateLoadingPopup();
+    fetchPokemonDataWithName(clickedPokemon)
+    .then(data => {
+        data ? managePokedexEntry(data) : false;
+    });
+};
+
+export function createPokemonList (pageJson) {
 
     const $listGroup = document.querySelector('#pokemon-list');
     $listGroup.innerHTML = '';

@@ -1,3 +1,10 @@
+import {calculateOffset} from '../utilities/utilities.js';
+import {
+    loadingList,
+    createPokemonList
+} from '../ui/list.js'
+import {getOnePokemonPage} from '../api/pokeapi.js';
+
 export function createPagination() { 
     const totalNumberOfPokemons = 807;
     const limit = 10;
@@ -41,7 +48,18 @@ function createPaginationItem(value) {
     $pagination.appendChild($pageItem);
 };
 
-export function updatePagination(selectedPage, pokemonPageJson) {
+export function ifPageSelected(selectedPage) {
+    const offset = calculateOffset(selectedPage);
+    loadingList();
+    updatePagination(selectedPage)
+    getOnePokemonPage(offset, 10).then(data => {
+        let pokemonPageJson = data;
+        updatePagination(selectedPage, pokemonPageJson);
+        setTimeout(() => {createPokemonList(pokemonPageJson)}, 200);
+    });
+};
+
+function updatePagination(selectedPage, pokemonPageJson) {
     updateActivePage(selectedPage)
     showPaginationItems(selectedPage);
     hidePaginationItems(selectedPage);
@@ -49,12 +67,6 @@ export function updatePagination(selectedPage, pokemonPageJson) {
     if (pokemonPageJson !== undefined) {
         updateDisabledButtons(pokemonPageJson);
     }
-    /*
-    if (pokemonPageJson === undefined) {
-        updateActivePage(selectedPage);
-    } else {
-        updateDisabledButtons(pokemonPageJson);
-    }*/
 };
 
 function updateActivePage(selectedPage){
@@ -161,3 +173,28 @@ function hidePaginationItems(selectedPage) { // works
         };
     };
 };
+
+export function managePageClick(event) {
+    const clickedPage = event.target.id;
+    let numberOfClickedPage = Number(clickedPage.split('-')[1]);
+
+    if (clickedPage === 'pagination'){
+        return '';
+    }
+
+    if (clickedPage === 'pagelink-previous'){
+        const $activePage = document.querySelector("li.active").id
+        const numberOfPreviousPage = Number($activePage.split('-')[1]) - 1;
+        numberOfClickedPage = numberOfPreviousPage;
+    }
+
+    if (clickedPage === 'pagelink-next'){
+        const $activePage = document.querySelector("li.active").id
+        const numberOfNextPage = Number($activePage.split('-')[1]) + 1;
+        numberOfClickedPage = numberOfNextPage;
+    }
+
+    ifPageSelected(numberOfClickedPage);
+};
+
+

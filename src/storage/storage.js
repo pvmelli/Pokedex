@@ -1,6 +1,3 @@
-
-
-
 export function loadPokemonDataFromLocalStorage(pokemonName){
     let pokemonData = JSON.parse(localStorage.getItem(pokemonName));
     

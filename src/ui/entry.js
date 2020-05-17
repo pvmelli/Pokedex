@@ -1,4 +1,15 @@
-export function clearPokedexEntry() {
+import {clearLoadingPopup} from '../ui/general.js';
+
+export function managePokedexEntry(pokemondata){
+    showPokedexEntry();
+    clearPokedexEntry();
+    fillPokedexEntry(pokemondata);
+    scrollToPokedexEntry();
+
+    clearLoadingPopup();
+};
+
+function clearPokedexEntry() {
     const $pokedexContainers = document.querySelectorAll('.pokedex-container');
 
     $pokedexContainers.forEach(container => {
@@ -6,17 +17,17 @@ export function clearPokedexEntry() {
     });
 };
 
-export function showPokedexEntry(){
+function showPokedexEntry(){
     const $pokedexEntry = document.querySelector('#pokedex-entry');
     $pokedexEntry.classList.remove('not-display');
 };
 
-export function scrollToPokedexEntry() {
+function scrollToPokedexEntry() {
     const pokedexEntryMargin = document.querySelector('#top-navbuttons-row');
     pokedexEntryMargin.scrollIntoView();
 };
 
-export function fillPokedexEntry(pokemondata) {
+function fillPokedexEntry(pokemondata) {
     const pokemonSingleData = pokemondata[0];
     const pokemonSpeciesData = pokemondata[1];
     fillPokemonName(pokemonSingleData.name);
@@ -54,14 +65,6 @@ function createValueButton(name, style) {
 
     return value;
 };
-
-
-
-
-
-
-
-
 
 function fillPokemonName(name){
     const $nameContainer = document.querySelector("#pokemon-name");
