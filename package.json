@@ -16,7 +16,8 @@
     "url": "https://github.com/pvmelli/Pokedex/issues"
   },
   "homepage": "https://github.com/pvmelli/Pokedex#readme",
-  "dependencies": {
-    "cypress": "^4.5.0"
+  "dependencies": {},
+  "devDependencies": {
+    "cypress": "^4.6.0"
   }
 }
