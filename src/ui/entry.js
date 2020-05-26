@@ -282,6 +282,7 @@ function fillPokemonStats(pokemonStats) {
 function createStatTable(statName, statBase, statEffort) {
     const container = document.createElement('table');
     container.classList.add('table');
+    container.setAttribute('id', `${statName.toUpperCase()}`)
 
     container.appendChild(createTH(statName));
 
