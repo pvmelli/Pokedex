@@ -13,7 +13,7 @@ export function manageListClick(event) {
     activateLoadingPopup();
     fetchPokemonDataWithName(clickedPokemon)
     .then(data => {
-        data ? managePokedexEntry(data) : false;
+        data ? managePokedexEntry(data[0], data[1]) : false;
     });
 };
 

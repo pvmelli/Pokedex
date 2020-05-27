@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Pokedex</title>
-
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' href='style.css'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
-
-    <script src="index.js" type="module"></script>
-</head>
-<body>
-
-
+export default `
 <div class="wrapper">
     <div class="fixed-header">
         <img src="./src/img/logo.png"/>
@@ -53,12 +35,12 @@
         <div class="row">
                 <div class="col-md-4">  
                     <div class="nes-container is-rounded pokedex-container" id="sprite-container">
-                <!-- here goes the img of the pokemon -->
+
                     </div>
                 </div>
                 <div class="col-md-8">
                     <div class="nes-container" id="flavor">
-                            <div class="pokedex-container" id="flavor-text"><!-- here goes the flavor text--></div>
+                            <div class="pokedex-container" id="flavor-text"></div>
                     </div>
                 </div>
         </div>
@@ -67,14 +49,14 @@
             <div class="col-md-4">
                 <div class="nes-container with-title is-centered" id="mon-basics">
                     <p class="title">Characteristics</p>
-                    <div class="pokedex-container" id="characteristics"><!-- here goes the basic data, type, weight, height, abilities --></div>
+                    <div class="pokedex-container" id="characteristics"></div>
                         
                 </div>
             </div>
             <div class="col-md-8">
                 <div class="nes-container with-title" id="ability-container">
                     <p class="title">Abilities</p>
-                    <div class="pokedex-container" id="abilities"><!-- here go the abilities--></div>                        
+                    <div class="pokedex-container" id="abilities"></div>                        
                 </div>
             </div>
         </div>
@@ -83,7 +65,7 @@
             <div class="col-md">
                 <div class="nes-container with-title" id="stats-container">
                     <p class="title">Stats</p>
-                        <div class="pokedex-container" id="stats"><!-- here go the stats --></div>
+                        <div class="pokedex-container" id="stats"></div>
                 </div>
             </div>
         </div>
@@ -98,7 +80,9 @@
         <div class="row justify-content-md-center">
             <div class="col-md-8">
                 <input type="text" id="pokemon-field" class="nes-input">
-                <div class="invalid not-display" id="invalid-search"></div>
+                <div class="invalid not-display" id="invalid-search">
+                    
+                </div>
                 
             </div>
             <div class="col-md-3">
@@ -198,12 +182,5 @@
 
 </div>
 </div>
-
-
-<!-- <script src="main.js"></script>
-<script src="functions.js"></script> -->
-
-
-</body>
-</html>
+`
 

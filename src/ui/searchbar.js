@@ -2,7 +2,7 @@ import {activateLoadingPopup} from '../ui/general.js';
 import {fetchPokemonDataWithName} from '../services/pokemon.js';
 import {managePokedexEntry} from './entry.js';
 
-function validateInput(inputName) {
+export function validateInput(inputName) {
      
     if(inputName.length === 0){
         return 'This field cannot be empty';
@@ -18,7 +18,7 @@ function validateInput(inputName) {
 };
 
 function fetchInput() {
-    const rawInput = document.querySelector('#pokemon-field').value.trim().toLowerCase();
+   const rawInput = document.querySelector('#pokemon-field').value.trim().toLowerCase();
 
     const inputValidationResult = validateInput(rawInput);
 
@@ -39,7 +39,7 @@ export function manageSearch() {
         activateLoadingPopup();
         fetchPokemonDataWithName(validatedInput)
         .then(data => {
-            data ? managePokedexEntry(data) : false;
+            data ? managePokedexEntry(data[0], data[1]) : false;
         });
     };
 };
@@ -59,6 +59,7 @@ export function clearInputError () {
 
     const $errorContainer = document.querySelector('#invalid-search');
     $errorContainer.classList.add('not-display');
+    $errorContainer.innerText = '';
 
 };
 

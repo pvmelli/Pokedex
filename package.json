@@ -4,7 +4,14 @@
   "description": "pokedex that connects to pokeapi",
   "main": "entrypoint.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test-coverage": "jest --collect-coverage",
+    "test:dev": "jest --watch"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
   },
   "repository": {
     "type": "git",
@@ -18,6 +25,10 @@
   "homepage": "https://github.com/pvmelli/Pokedex#readme",
   "dependencies": {},
   "devDependencies": {
-    "cypress": "^4.6.0"
+    "@babel/preset-env": "^7.9.6",
+    "@types/jest": "^25.2.3",
+    "babel-jest": "^26.0.1",
+    "cypress": "^4.6.0",
+    "jest": "^26.0.1"
   }
 }

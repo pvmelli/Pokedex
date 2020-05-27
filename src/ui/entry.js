@@ -1,9 +1,9 @@
 import {clearLoadingPopup} from '../ui/general.js';
 
-export function managePokedexEntry(pokemondata){
+export function managePokedexEntry(pokemonSingleData, pokemonSpeciesData){
     showPokedexEntry();
     clearPokedexEntry();
-    fillPokedexEntry(pokemondata);
+    fillPokedexEntry(pokemonSingleData, pokemonSpeciesData);
     scrollToPokedexEntry();
 
     clearLoadingPopup();
@@ -27,9 +27,7 @@ function scrollToPokedexEntry() {
     pokedexEntryMargin.scrollIntoView();
 };
 
-function fillPokedexEntry(pokemondata) {
-    const pokemonSingleData = pokemondata[0];
-    const pokemonSpeciesData = pokemondata[1];
+function fillPokedexEntry(pokemonSingleData, pokemonSpeciesData) {
     fillPokemonName(pokemonSingleData.name);
     fillPokemonSprite(pokemonSingleData.sprites.front_default);
     fillPokemonCharacteristics(pokemonSingleData, pokemonSpeciesData);
