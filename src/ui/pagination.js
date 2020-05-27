@@ -54,19 +54,15 @@ export function ifPageSelected(selectedPage) {
     updatePagination(selectedPage)
     getOnePokemonPage(offset, 10).then(data => {
         let pokemonPageJson = data;
-        updatePagination(selectedPage, pokemonPageJson);
         setTimeout(() => {createPokemonList(pokemonPageJson)}, 200);
     });
 };
 
-function updatePagination(selectedPage, pokemonPageJson) {
+function updatePagination(selectedPage) {
     updateActivePage(selectedPage)
     showPaginationItems(selectedPage);
     hidePaginationItems(selectedPage);
-
-    if (pokemonPageJson !== undefined) {
-        updateDisabledButtons(pokemonPageJson);
-    }
+    updateDisabledButtons(selectedPage);
 };
 
 function updateActivePage(selectedPage){
@@ -79,22 +75,22 @@ function updateActivePage(selectedPage){
     $selectedItem.classList.add('active');
 };
 
-function updateDisabledButtons(pokemonPageJson) {
+function updateDisabledButtons(selectedPage) {
+    const totalPages = 85 - 4;
+
     const $previousButton = document.querySelector('#page-previous')
-    
-    if(pokemonPageJson.previous === null) {
+    if (selectedPage <= 1){
         $previousButton.classList.add('disabled');
     } else {
         $previousButton.classList.remove('disabled');
     }
 
     const $nextButton = document.querySelector('#page-next')
-
-    if(pokemonPageJson.next === null) {
+    if (selectedPage >= totalPages) {
         $nextButton.classList.add('disabled');
     } else {
         $nextButton.classList.remove('disabled');
-    };
+    }
 }
 
 function showPaginationItems(selectedPage) {
