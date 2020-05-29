@@ -4,7 +4,6 @@ import {
 } from '../storage/storage.js';
 
 import{
-    clearInputError,
     showInputError
 } from '../ui/searchbar.js';
 
@@ -21,7 +20,6 @@ export async function fetchPokemonDataWithName(pokemonName) {
         if (pokemonData === null){
             throw error;
         } else {
-            clearInputError();
             makeNavButtonsVisible();
             return pokemonData;
         }
@@ -29,7 +27,6 @@ export async function fetchPokemonDataWithName(pokemonName) {
         try {
             let data = await loadPokemonDataFromApi (pokemonName);
             savePokemonDataToLocalStorage (pokemonName, data);
-            clearInputError();
             makeNavButtonsVisible();
             return data;
     

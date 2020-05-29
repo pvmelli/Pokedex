@@ -17,7 +17,7 @@ test("Manage creation of a pokemon page list", () => {
         expect(document.querySelector(`#${pokemon}`).getAttribute("class"))
         .toEqual(expect.stringContaining("list-group-item"));
     });
-  });
+});
 
 test("Manage click on a list item", () => {
     initialize() 
@@ -28,6 +28,6 @@ test("Manage click on a list item", () => {
 
     expect(document.querySelector(`#loading-modal`).getAttribute("class"))
         .toEqual(expect.not.stringContaining("not-display"));
-  });
+});
 
 

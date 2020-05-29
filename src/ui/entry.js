@@ -7,6 +7,7 @@ export function managePokedexEntry(pokemonSingleData, pokemonSpeciesData){
     scrollToPokedexEntry();
 
     clearLoadingPopup();
+    
 };
 
 function clearPokedexEntry() {
@@ -166,7 +167,7 @@ function fillHabitat(habitat, container){
     if (habitat === null){
         formattedHabitat = '???'
     } else {
-        formattedHabitat = habitatFormatter(habitat.name);
+        formattedHabitat = habitat.name;
     }
 
     const habitatBox = createGroupButton();
@@ -179,16 +180,6 @@ function fillHabitat(habitat, container){
     container.appendChild(habitatBox);
 
 };
-
-function habitatFormatter(habitat) {
-    if (habitat === null) {
-        return formattedHabitat = '???';
-    } else {
-        return habitat;
-    }
-};
-
-
 
 function fillTypes(typesObject, container){
     const formattedTypes = typeFormatter(typesObject);

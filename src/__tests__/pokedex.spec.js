@@ -21,9 +21,4 @@ test("Initialize pokedex", () => {
 
   expect(global.fetch).toHaveBeenCalledTimes(1);
 
-  setTimeout(() => {
-    expect(
-      document.querySelectorAll("#pokemon-list .list-group-item")
-    ).toHaveLength(10);
-  }, 15000);
 });
