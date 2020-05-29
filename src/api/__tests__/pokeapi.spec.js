@@ -1,4 +1,3 @@
-import { initialize } from "../../pokedex.js";
 import {getOnePokemonPage, loadPokemonDataFromApi} from '../pokeapi.js'
 
 beforeEach(() => {
@@ -38,12 +37,13 @@ test("The data of a pokemon can be loaded correctly from the api", () => {
 
       const BASE_URL = 'https://pokeapi.co/api/v2/pokemon-species/'
       const LIMIT = 10;
+      const OFFSET = 0;
     
-      getOnePokemonPage(0, 10);
+      getOnePokemonPage(OFFSET, LIMIT);
     
       expect(global.fetch)
         .toHaveBeenCalledTimes(1);
       expect(global.fetch)
-        .toHaveBeenCalledWith(`${BASE_URL}?offset=0&limit=${LIMIT}`);
+        .toHaveBeenCalledWith(`${BASE_URL}?offset=${OFFSET}&limit=${LIMIT}`);
 });
 

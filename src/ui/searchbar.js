@@ -2,7 +2,7 @@ import {activateLoadingPopup} from '../ui/general.js';
 import {fetchPokemonDataWithName} from '../services/pokemon.js';
 import {managePokedexEntry} from './entry.js';
 
-export function validateInput(inputName) {
+function validateInput(inputName) {
      
     if(inputName.length === 0){
         return 'This field cannot be empty';
@@ -31,6 +31,7 @@ function fetchInput() {
 };
 
 export function manageSearch() {
+    clearInputError();
     const validatedInput = fetchInput();
 
     if (validatedInput === 'error'){
@@ -53,7 +54,7 @@ export function showInputError(error){
     $errorContainer.innerText = error;
 };
 
-export function clearInputError () {
+function clearInputError () {
     const $inputField = document.querySelector('#pokemon-field');
     $inputField.classList.remove('is-error');
 
