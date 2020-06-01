@@ -5,7 +5,11 @@ export function loadPokemonDataFromLocalStorage(pokemonName){
 };
 
 export function savePokemonDataToLocalStorage (pokemonName, pokemonData){
-    localStorage.setItem(pokemonName, JSON.stringify(pokemonData));
- };
+    try{
+        localStorage.setItem(pokemonName, JSON.stringify(pokemonData));
+    }catch(e){
+        return '';
+    }
+};
 
 

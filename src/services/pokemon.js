@@ -30,7 +30,7 @@ export async function fetchPokemonDataWithName(pokemonName) {
             makeNavButtonsVisible();
             return data;
     
-        }catch (error){
+        }catch (e){
             clearLoadingPopup();
             showInputError('The name entered is invalid');
             return null;
