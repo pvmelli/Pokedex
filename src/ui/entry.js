@@ -1,9 +1,35 @@
 import {clearLoadingPopup} from '../ui/general.js';
 
+class Pokemon {
+    constructor(pokemonSingleData, pokemonSpeciesData) {
+      this.name = pokemonSingleData.name;
+      this.sprite = pokemonSingleData.sprites.front_default;
+      this.generation = pokemonSpeciesData.generation.name;
+      this.height = pokemonSingleData.height.toString();
+      this.weight = pokemonSingleData.weight.toString();
+      this.habitat = pokemonSpeciesData.habitat;
+      this.types = pokemonSingleData.types;
+      this.flavorText = pokemonSpeciesData.flavor_text_entries;
+      this.abilities = pokemonSingleData.abilities;
+      this.stats = pokemonSingleData.stats;
+    }
+
+    fillPokedexEntry() {
+        fillPokemonName(this.name);
+        fillPokemonSprite(this.sprite);
+        fillPokemonCharacteristics(this.generation, this.height, this.weight, this.habitat, this.types);
+        fillPokemonFlavorText(this.flavorText);
+        fillPokemonAbilities(this.abilities);
+        fillPokemonStats(this.stats);
+    }
+};
+
+
 export function managePokedexEntry(pokemonSingleData, pokemonSpeciesData){
+    const selectedPokemon = new Pokemon(pokemonSingleData, pokemonSpeciesData);
     showPokedexEntry();
     clearPokedexEntry();
-    fillPokedexEntry(pokemonSingleData, pokemonSpeciesData);
+    selectedPokemon.fillPokedexEntry();
     scrollToPokedexEntry();
 
     clearLoadingPopup();
@@ -28,14 +54,6 @@ function scrollToPokedexEntry() {
     pokedexEntryMargin.scrollIntoView();
 };
 
-function fillPokedexEntry(pokemonSingleData, pokemonSpeciesData) {
-    fillPokemonName(pokemonSingleData.name);
-    fillPokemonSprite(pokemonSingleData.sprites.front_default);
-    fillPokemonCharacteristics(pokemonSingleData, pokemonSpeciesData);
-    fillPokemonFlavorText(pokemonSpeciesData.flavor_text_entries);
-    fillPokemonAbilities(pokemonSingleData.abilities);
-    fillPokemonStats(pokemonSingleData.stats);
-};
 
 function createGroupButton () {
     const box = document.createElement('div');
@@ -73,27 +91,34 @@ function fillPokemonName(name){
 function fillPokemonSprite(spriteURL){
     const $spriteContainer = document.querySelector('#sprite-container');
 
+    const $image = spriteFormatter(spriteURL);
+
+    $spriteContainer.appendChild($image);
+}; 
+
+function spriteFormatter(spriteURL) {
     let $image;
+
     if (spriteURL === null){
         $image = document.createElement('strong');
         $image.innerText = '???';
+        return $image;
     } else {
         $image = document.createElement('img');
         $image.setAttribute('src', spriteURL);
         $image.classList.add('sprite');
+        return $image;
     }
 
-    $spriteContainer.appendChild($image);
+}
 
-}; 
-
-function fillPokemonCharacteristics(pokemonSingleData, pokemonSpeciesData) {
+function fillPokemonCharacteristics(generation, height, weight, habitat, types) {
     const $characteristicsContainer = document.querySelector('#characteristics');
-    fillGeneration(pokemonSpeciesData.generation.name, $characteristicsContainer);
-    fillHeight(pokemonSingleData.height.toString(), $characteristicsContainer);
-    fillWeight(pokemonSingleData.weight.toString(), $characteristicsContainer);
-    fillHabitat(pokemonSpeciesData.habitat, $characteristicsContainer)
-    fillTypes(pokemonSingleData.types, $characteristicsContainer);
+    fillGeneration(generation, $characteristicsContainer);
+    fillHeight(height, $characteristicsContainer);
+    fillWeight(weight, $characteristicsContainer);
+    fillHabitat(habitat, $characteristicsContainer)
+    fillTypes(types, $characteristicsContainer);
 };
 
 function fillGeneration(generation_x, container){
@@ -124,9 +149,7 @@ function fillHeight(heightDataString, container){
 };
 
 function heightFormatter(heightString) {
-    if (heightString === null) {
-        return `???`;
-    } else if (heightString.length <= 1) {
+    if (heightString.length <= 1) {
         return `0.${heightString}m`;
     } else {
         return `${heightString.slice(0,1)}.${heightString.slice(1)}m`;
@@ -148,9 +171,7 @@ function fillWeight(weightDataString, container) {
 };
 
 function weightFormatter(weightString) {
-    if(weightString === null){
-        return `???`;
-    }else if (weightString.length <= 1) {
+    if (weightString.length <= 1) {
         return `${weightString}kg`;
     } else if (weightString.length <= 2) {
         return `${weightString.slice(0,1)}.${weightString.slice(1)}kg`;       
