@@ -8,3 +8,7 @@ Pokedex conectada a PokeAPI.
 * Javascript
 * RESTful API
 * NES.css
+* Bootstrap
+* GoogleFonts
+* Jest
+* Cypress
