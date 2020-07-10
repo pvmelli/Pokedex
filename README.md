@@ -1,5 +1,5 @@
 # Pokedex
-Pokedex conectada a PokeAPI.
+Pokedex conectada a [PokeAPI](https://pokeapi.co).
 
 ## [Live Demo](https://pvmelli.github.io/Pokedex/)
  
