@@ -3,7 +3,7 @@ La manera perfecta de consultar todos esos pokemon que habías olvidado! :zap: :
 
 ### Detalles técnicos
 * La pokedex se halla conectada a una API Restful ([PokeAPI](https://pokeapi.co)) por medio de funciones fetch, que utilizan el método GET.
-* Incluye pruebas de testeo tanto integrales (con Cypress) como unitarias (con Jest)
+* Incluye pruebas de testeo tanto integrales (con Cypress) como unitarias (con Jest). Las pruebas de Jest incluyen mocks, para emular el funcionamiento real del sitio.
 * Utiliza localstorage para recuperar elementos buscados previamente
 * La barra de búsqueda cuenta con métodos de validación, con y sin conexión con la API
 * La lista de pokemones se construye en base a la información proveída por la API
