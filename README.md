@@ -9,16 +9,16 @@ La manera perfecta de consultar todos esos pokemon que habías olvidado! :zap: :
 * La lista de pokemones se construye en base a la información proveída por la API
 * El código está dividido en módulos para facilitar su comprensión, testeo y el rastreo de errores
 
-Pokedex conectada a [PokeAPI](https://pokeapi.co).
 
 ## [Live Demo](https://pvmelli.github.io/Pokedex/)
  
-* HTML5
-* CSS3
 * Javascript
 * RESTful API
+* Jest
+* Cypress
+* HTML5
+* CSS3
 * NES.css
 * Bootstrap
 * GoogleFonts
-* Jest
-* Cypress
+
